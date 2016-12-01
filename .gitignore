@@ -1,0 +1,5 @@
+/target/*
+!/target/site/
+/target/site/*
+!/target/site/apidocs/
+
