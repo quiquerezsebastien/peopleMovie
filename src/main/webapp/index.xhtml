@@ -5,53 +5,36 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>#{msg['appli.title']}</title>
     </h:head>
     <h:body>
-
-        <f:metadata>
-            <f:viewAction action="#{showPeopleBean.initEntities()}"/>
-        </f:metadata>
-
         <ui:composition template="main.xhtml">
             <ui:define name="top">Hello, je suis TOP</ui:define>
+
             <ui:define name="content">
                 
-                <h:dataTable value="#{showPeopleBean.people}" var="o">
+                <f:metadata>
+                    <f:viewAction action="#{showPeopleBean.initEntities()}"/>
+                </f:metadata>
+                
+                <h1>#{msg['appli.people.list.title']}</h1>
+                
+                <h:dataTable value="#{showPeopleBean.people}" var="person">
                     <h:column>
-                        <f:facet name="header">#{msg.id}</f:facet>
-                        <h:link outcome="formPerson.xhtml" value="#{o.id}">
-                            <f:param name="id" value="#{o.id}"/>
+                        <f:facet name="header">Id</f:facet>
+                        <h:link outcome="ShowPeopleBean.xhtml" value="#{person.id}">
+                            <f:param name="id" value="#{person.lastName}"/>
                         </h:link>
                     </h:column>
+                    
                     <h:column>
-                        <f:facet name="header">#{msg.firstname}</f:facet>
-                            #{o.firstName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Nom</f:facet>
-                            #{o.lastName}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{msg.gendre}</f:facet>
-                            #{o.gender}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{msg.birthday}</f:facet>
-
-                        <h:outputText value="#{o.birthDate}">
-                            <f:convertDateTime pattern="dd.MM.yyyy" />
-                        </h:outputText>
-
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">#{msg.married}</f:facet>
-                            #{o.married}
+                        <f:facet name="header">Firstname</f:facet>
+                            #{person.firstName}
                     </h:column>
                 </h:dataTable>
-                
+
             </ui:define>
-            
+
         </ui:composition>
     </h:body>
 </html>

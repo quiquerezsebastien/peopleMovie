@@ -64,18 +64,18 @@ public class Person {
 
     public void addMovie(Movie movie) throws UniqueException, NullParameterException{
         
-        if (movie == null) {
-            throw new NullParameterException("Le paramètre est null");
-        }
-        else{
-            if (movies.get(movie.getId().intValue()) != null) {
-                movies.add(movie);
-            }
-            else{
-                throw new UniqueException("Le film existe déjà dans la liste");
-            }
-            
-        }
+//        if (movie == null) {
+//            throw new NullParameterException("Le paramètre est null");
+//        }
+//        else{
+//            if (movies.get(movie.getId().intValue()) != null) {
+//                movies.add(movie);
+//            }
+//            else{
+//                throw new UniqueException("Le film existe déjà dans la liste");
+//            }
+//            
+//        }
     }
 
     public void removeMovie(Movie movie) {
