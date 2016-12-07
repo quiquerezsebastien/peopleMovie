@@ -12,23 +12,43 @@
             <ui:define name="top">Hello, je suis TOP</ui:define>
 
             <ui:define name="content">
-                
+
                 <f:metadata>
                     <f:viewAction action="#{showPeopleBean.initEntities()}"/>
                 </f:metadata>
-                
-                <h1>#{msg['appli.people.list.title']}</h1>
+
+                <h1>#{msg['appli.people.title.list']}</h1>
+
+                <h:dataTable value="#{showPeopleBean.people}" var="person">
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.id']}</f:facet>
+                        <h:link outcome="person.xhtml" value="#{person.id}">
+                            <f:param name="id" value="#{person.id}"/>
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.lastname']}</f:facet>
+                            #{person.lastName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
+                            #{person.firstName}
+                    </h:column>
+                </h:dataTable>
                 
                 <h:dataTable value="#{showPeopleBean.people}" var="person">
                     <h:column>
-                        <f:facet name="header">Id</f:facet>
-                        <h:link outcome="ShowPeopleBean.xhtml" value="#{person.id}">
-                            <f:param name="id" value="#{person.lastName}"/>
+                        <f:facet name="header">#{msg['appli.people.label.id']}</f:facet>
+                        <h:link outcome="person.xhtml" value="#{person.id}">
+                            <f:param name="id" value="#{person.id}"/>
                         </h:link>
                     </h:column>
-                    
                     <h:column>
-                        <f:facet name="header">Firstname</f:facet>
+                        <f:facet name="header">#{msg['appli.people.label.lastname']}</f:facet>
+                            #{person.lastName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
                             #{person.firstName}
                     </h:column>
                 </h:dataTable>

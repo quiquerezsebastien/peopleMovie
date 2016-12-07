@@ -9,7 +9,7 @@ import ch.hearc.ig.odi.peopleMovie.business.Person;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
 /**
@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * @author sebastie.quiquere
  */
 @Named(value = "showPeopleBean")
-@Dependent
+@RequestScoped
 public class ShowPeopleBean {
     
     @Inject Services service;
