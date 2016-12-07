@@ -67,11 +67,10 @@ public class Person implements Serializable {
 
     public void addMovie(Movie movie) throws UniqueException, NullParameterException {
         
-        int index = movies.indexOf(movie);
-        
+
         if (movie == null) {
             throw new NullParameterException("Le paramètre est null");
-        } else if (movies.get(index) != null) {
+        } else if (movies.get(movie.getId().intValue()) != null) {
             throw new UniqueException("Le film existe déjà dans la liste");
         } else {
             movies.add(movie);
