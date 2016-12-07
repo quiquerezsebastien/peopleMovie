@@ -5,13 +5,14 @@
  */
 package ch.hearc.ig.odi.peopleMovie.business;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author sebastie.quiquere
  */
-public class Movie {
+public class Movie implements Serializable{
     
     private Long id;
     private String name;

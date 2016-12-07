@@ -34,22 +34,34 @@
                         <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
                             #{person.firstName}
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.movies']}</f:facet>
+                        #{person.movies.size()}
+                    </h:column>
                 </h:dataTable>
                 
-                <h:dataTable value="#{showPeopleBean.people}" var="person">
+                <br/><br/>
+                
+                <h1>#{msg['appli.movie.title.list']}</h1>
+                
+                <h:dataTable value="#{showPeopleBean.movies}" var="movie">
                     <h:column>
-                        <f:facet name="header">#{msg['appli.people.label.id']}</f:facet>
-                        <h:link outcome="person.xhtml" value="#{person.id}">
-                            <f:param name="id" value="#{person.id}"/>
+                        <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
+                        <h:link outcome="index.xhtml" value="#{movie.id}">
+                            <f:param name="id" value="#{movie.id}"/>
                         </h:link>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{msg['appli.people.label.lastname']}</f:facet>
-                            #{person.lastName}
+                        <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
+                        #{movie.name}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
-                            #{person.firstName}
+                        <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
+                        #{movie.producer}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.persons']}</f:facet>
+                        #{movie.people.size()}
                     </h:column>
                 </h:dataTable>
 

@@ -7,14 +7,17 @@ package ch.hearc.ig.odi.peopleMovie.business;
 
 import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
 import ch.hearc.ig.odi.peopleMovie.exception.UniqueException;
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author sebastie.quiquere
  */
-public class Person {
-    
+public class Person implements Serializable {
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,12 +25,12 @@ public class Person {
 
     public Person() {
     }
-    
-    
+
     public Person(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.movies = new ArrayList<>();
     }
 
     public Long getId() {
@@ -62,24 +65,21 @@ public class Person {
         this.movies = movies;
     }
 
-    public void addMovie(Movie movie) throws UniqueException, NullParameterException{
+    public void addMovie(Movie movie) throws UniqueException, NullParameterException {
         
-//        if (movie == null) {
-//            throw new NullParameterException("Le paramètre est null");
-//        }
-//        else{
-//            if (movies.get(movie.getId().intValue()) != null) {
-//                movies.add(movie);
-//            }
-//            else{
-//                throw new UniqueException("Le film existe déjà dans la liste");
-//            }
-//            
-//        }
+        int index = movies.indexOf(movie);
+        
+        if (movie == null) {
+            throw new NullParameterException("Le paramètre est null");
+        } else if (movies.get(index) != null) {
+            throw new UniqueException("Le film existe déjà dans la liste");
+        } else {
+            movies.add(movie);
+        }
     }
 
     public void removeMovie(Movie movie) {
         movies.remove(movie);
     }
-    
+
 }
