@@ -12,7 +12,7 @@
         </f:metadata>
     </h:head>
     <h:body>
-        <ui:composition template="main.xhtml">
+        <ui:composition template="/main.xhtml">
             <ui:define name="top">#{msg['appli.people.title.detail']}</ui:define>
 
             <ui:define name="content">
@@ -31,7 +31,7 @@
                 <h:dataTable value="#{managePerson.currentPerson.movies}" var="movie">
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
-                        <h:link outcome="movie.xhtml" value="#{movie.id}">
+                        <h:link outcome="/movie/movie.xhtml" value="#{movie.id}">
                             <f:param name="id" value="#{movie.id}"/>
                         </h:link>
                     </h:column>
@@ -44,7 +44,7 @@
                             #{movie.producer}
                     </h:column>
                 </h:dataTable>
-                <h:button value="Retour à la page d'accueil" outcome="index.xhtml"/>
+                <h:button value="Retour à la page d'accueil" outcome="/index.xhtml"/>
             </ui:define>
 
         </ui:composition>

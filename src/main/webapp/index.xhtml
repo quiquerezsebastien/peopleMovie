@@ -23,7 +23,7 @@
                 <h:dataTable value="#{showPeopleBean.people}" var="person">
                     <h:column>
                         <f:facet name="header">#{msg['appli.people.label.id']}</f:facet>
-                        <h:link outcome="person.xhtml" value="#{person.id}">
+                        <h:link outcome="person/person.xhtml" value="#{person.id}">
                             <f:param name="id" value="#{person.id}"/>
                         </h:link>
                     </h:column>
@@ -48,7 +48,7 @@
                 <h:dataTable value="#{showPeopleBean.movies}" var="movie">
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
-                        <h:link outcome="movie.xhtml" value="#{movie.id}">
+                        <h:link outcome="movie/movie.xhtml" value="#{movie.id}">
                             <f:param name="id" value="#{movie.id}"/>
                         </h:link>
                     </h:column>
