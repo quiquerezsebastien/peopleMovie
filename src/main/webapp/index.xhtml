@@ -6,16 +6,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msg['appli.title']}</title>
+        <f:metadata>
+            <f:viewAction action="#{showPeopleBean.initEntities()}"/>
+        </f:metadata>
     </h:head>
     <h:body>
         <ui:composition template="main.xhtml">
-            <ui:define name="top">Hello, je suis TOP</ui:define>
+            <ui:define name="top">Page d'accueil</ui:define>
 
             <ui:define name="content">
 
-                <f:metadata>
-                    <f:viewAction action="#{showPeopleBean.initEntities()}"/>
-                </f:metadata>
+
 
                 <h1>#{msg['appli.people.title.list']}</h1>
 
@@ -36,14 +37,14 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.people.label.movies']}</f:facet>
-                        #{person.movies.size()}
+                            #{person.movies.size()}
                     </h:column>
                 </h:dataTable>
-                
+
                 <br/><br/>
-                
+
                 <h1>#{msg['appli.movie.title.list']}</h1>
-                
+
                 <h:dataTable value="#{showPeopleBean.movies}" var="movie">
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
@@ -53,15 +54,15 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
-                        #{movie.name}
+                            #{movie.name}
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
-                        #{movie.producer}
+                            #{movie.producer}
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.persons']}</f:facet>
-                        #{movie.people.size()}
+                            #{movie.people.size()}
                     </h:column>
                 </h:dataTable>
 

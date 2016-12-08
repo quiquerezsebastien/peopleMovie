@@ -21,6 +21,7 @@ import javax.inject.Inject;
 public class ManagePerson {
     
     @Inject Services service;
+    
     int currentPersonID;
     Person currentPerson;
 
@@ -29,16 +30,25 @@ public class ManagePerson {
      */
     public ManagePerson() {
     }
+
+    public int getCurrentPersonID() {
+        return currentPersonID;
+    }
+
+    public void setCurrentPersonID(int currentPersonID) {
+        this.currentPersonID = currentPersonID;
+    }
+
+    public Person getCurrentPerson() {
+        return currentPerson;
+    }
+
+    public void setCurrentPerson(Person currentPerson) {
+        this.currentPerson = currentPerson;
+    }
     
     public void initPerson() {
-        String idParam = FacesContext
-                .getCurrentInstance()
-                .getExternalContext()
-                .getRequestParameterMap().get("id");
-        if (!(idParam == null || idParam.isEmpty())) {
-            currentPersonID = Integer.parseInt(idParam);
             currentPerson = service.getPersonWithId(new Long(currentPersonID));
         }
-    }
     
 }
