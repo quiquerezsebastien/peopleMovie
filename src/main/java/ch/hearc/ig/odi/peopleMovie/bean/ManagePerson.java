@@ -9,7 +9,6 @@ import ch.hearc.ig.odi.peopleMovie.business.Person;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
