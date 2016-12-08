@@ -47,6 +47,11 @@ public class ShowPeopleMoviesBean implements Serializable{
         this.movies = movies;
     }
     
+    /**
+     * Initialisation de toutes les personnes et tous les films.
+     * 
+     * Permet de les afficher sur la pas d'accueil
+     */
     public void initEntities() {
         this.people = service.getPeopleList();
         this.movies = service.getMoviesList();

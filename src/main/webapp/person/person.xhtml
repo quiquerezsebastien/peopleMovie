@@ -16,16 +16,16 @@
             <ui:define name="top">#{msg['appli.people.title.detail']}</ui:define>
 
             <ui:define name="content">
-                
+
                 #{msg['appli.people.label.id']}:        #{managePerson.currentPerson.id}
                 <br/>
                 #{msg['appli.people.label.firstname']}: #{managePerson.currentPerson.firstName}
                 <br/>
                 #{msg['appli.people.label.lastname']}:  #{managePerson.currentPerson.lastName}
-                
+
                 <br/>
                 <br/>
-                
+
                 <h1>#{msg['appli.movie.title.list']}</h1>
                 <br/>
                 <h:dataTable value="#{managePerson.currentPerson.movies}" var="movie">
@@ -37,14 +37,18 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
-                            #{movie.name}
+                        <h:link outcome="/movie/movie.xhtml" value="#{movie.name}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
-                            #{movie.producer}
+                        <h:link outcome="/movie/movie.xhtml" value="#{movie.producer}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
                     </h:column>
                 </h:dataTable>
-                <h:button value="Retour à la page d'accueil" outcome="/index.xhtml"/>
+                <h:button value="#{msg['appli.home']}" outcome="/index.xhtml"/>
             </ui:define>
 
         </ui:composition>
