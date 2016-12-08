@@ -1,12 +1,73 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>#{msg['appli.title']}</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <ui:composition template="main.xhtml">
+            <ui:define name="top">Hello, je suis TOP</ui:define>
+
+            <ui:define name="content">
+
+                <f:metadata>
+                    <f:viewAction action="#{showPeopleBean.initEntities()}"/>
+                </f:metadata>
+
+                <h1>#{msg['appli.people.title.list']}</h1>
+
+                <h:dataTable value="#{showPeopleBean.people}" var="person">
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.id']}</f:facet>
+                        <h:link outcome="person.xhtml" value="#{person.id}">
+                            <f:param name="id" value="#{person.id}"/>
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.lastname']}</f:facet>
+                            #{person.lastName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
+                            #{person.firstName}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.people.label.movies']}</f:facet>
+                        #{person.movies.size()}
+                    </h:column>
+                </h:dataTable>
+                
+                <br/><br/>
+                
+                <h1>#{msg['appli.movie.title.list']}</h1>
+                
+                <h:dataTable value="#{showPeopleBean.movies}" var="movie">
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
+                        <h:link outcome="movie.xhtml" value="#{movie.id}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
+                        #{movie.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
+                        #{movie.producer}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.persons']}</f:facet>
+                        #{movie.people.size()}
+                    </h:column>
+                </h:dataTable>
+
+            </ui:define>
+
+        </ui:composition>
     </h:body>
 </html>
 
