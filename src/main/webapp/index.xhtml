@@ -47,7 +47,7 @@
                 <h:dataTable value="#{showPeopleBean.movies}" var="movie">
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
-                        <h:link outcome="index.xhtml" value="#{movie.id}">
+                        <h:link outcome="movie.xhtml" value="#{movie.id}">
                             <f:param name="id" value="#{movie.id}"/>
                         </h:link>
                     </h:column>

@@ -5,7 +5,10 @@
  */
 package ch.hearc.ig.odi.peopleMovie.business;
 
+import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
+import ch.hearc.ig.odi.peopleMovie.exception.UniqueException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,12 +24,14 @@ public class Movie implements Serializable{
 
     public Movie(String producer) {
         this.producer = producer;
+        this.people = new ArrayList<>();
     }
 
     public Movie(Long id, String name, String producer) {
         this.id = id;
         this.name = name;
         this.producer = producer;
+        this.people = new ArrayList<>();
     }
 
     public Long getId() {
@@ -59,6 +64,22 @@ public class Movie implements Serializable{
 
     public void setPeople(List<Person> people) {
         this.people = people;
+    }
+    
+    public void addPerson(Person person) throws UniqueException, NullParameterException {
+
+        if (person == null) {
+            throw new NullParameterException("Le paramètre est null");
+        } else {
+            if (people.size() > 0) {
+                for (Person pers : people) {
+                    if (pers.getId() == person.getId()) {
+                        throw new UniqueException("Le film existe déjà dans la liste");
+                    }
+                }
+            }
+            people.add(person);
+        }
     }
     
 }

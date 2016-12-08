@@ -8,7 +8,6 @@ package ch.hearc.ig.odi.peopleMovie.business;
 import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
 import ch.hearc.ig.odi.peopleMovie.exception.UniqueException;
 import java.io.Serializable;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class Person implements Serializable {
     private List<Movie> movies;
 
     public Person() {
+        this.movies = new ArrayList<>();
     }
 
     public Person(Long id, String firstName, String lastName) {
@@ -66,14 +66,19 @@ public class Person implements Serializable {
     }
 
     public void addMovie(Movie movie) throws UniqueException, NullParameterException {
-        
 
         if (movie == null) {
             throw new NullParameterException("Le paramètre est null");
-        } else if (movies.get(movie.getId().intValue()) != null) {
-            throw new UniqueException("Le film existe déjà dans la liste");
         } else {
+            if (movies.size() > 0) {
+                for (Movie mov : movies) {
+                    if (mov.getId() == movie.getId()) {
+                        throw new UniqueException("Le film existe déjà dans la liste");
+                    }
+                }
+            }
             movies.add(movie);
+            movie.addPerson(this);
         }
     }
 
