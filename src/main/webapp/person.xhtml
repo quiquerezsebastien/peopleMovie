@@ -6,13 +6,43 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <f:metadata>
+            <f:viewParam name="id" value="#{managePerson.currentPersonID}"/>
+            <f:viewAction action="#{managePerson.initPerson()}" />
+        </f:metadata>
     </h:head>
     <h:body>
         <ui:composition template="main.xhtml">
-            <ui:define name="top">Hello, je suis TOP</ui:define>
+            <ui:define name="top">#{msg['appli.people.title.detail']}</ui:define>
 
             <ui:define name="content">
-                content
+                
+                #{msg['appli.people.label.id']}:        #{managePerson.currentPerson.id}
+                <br/>
+                #{msg['appli.people.label.firstname']}: #{managePerson.currentPerson.firstName}
+                <br/>
+                #{msg['appli.people.label.lastname']}:  #{managePerson.currentPerson.lastName}
+                <br/>
+                <br/>
+                <h1>#{msg['appli.movie.title.list']}</h1>
+                <br/>
+                <h:dataTable value="#{managePerson.currentPerson.movies}" var="movie">
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.id']}</f:facet>
+                        <h:link outcome="movie.xhtml" value="#{movie.id}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
+                            #{movie.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
+                            #{movie.producer}
+                    </h:column>
+                </h:dataTable>
+                <h:button value="Retour à la page d'accueil" outcome="index.xhtml"/>
             </ui:define>
 
         </ui:composition>
