@@ -8,17 +8,18 @@ package ch.hearc.ig.odi.peopleMovie.bean;
 import ch.hearc.ig.odi.peopleMovie.business.Movie;
 import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author sebastie.quiquere
  */
-@Named(value = "manageMovie")
-@RequestScoped
-public class ManageMovie {
+@ManagedBean(name = "manageMovie")
+@ViewScoped
+public class ManageMovie implements Serializable{
 
     private Long currentMovieId;
     private Movie currentMovie;
