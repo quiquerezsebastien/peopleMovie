@@ -13,23 +13,42 @@
     </h:head>
     <h:body>
         <ui:composition template="/main.xhtml">
-            <ui:define name="top">#{msg['appli.movie.title.add']}</ui:define>
+            <ui:define name="top">
+                <h:panelGroup rendered="#{manageMovie.currentMovieId != null}">
+                    #{msg['appli.movie.title.edit']}
+                </h:panelGroup>
+                <h:panelGroup rendered="#{manageMovie.currentMovieId == null}">
+                    #{msg['appli.movie.title.add']}
+                </h:panelGroup>
+            </ui:define>
 
             <ui:define name="content">
                 <h:form>
-                    #{msg['appli.movie.label.name']}: <h:inputText id="name" value="#{manageMovie.name}"/>
+                    <h:panelGroup rendered="#{manageMovie.currentMovieId != null}">
+                        #{msg['appli.movie.label.id']}: <h:inputText id="idMov" value="#{manageMovie.currentMovie.id}" disabled="true"/>
+                    </h:panelGroup>
+                    <br/>
+
+                    #{msg['appli.movie.label.name']}:
+                    <h:inputText id="name" value="#{manageMovie.currentMovie.name}"/>
 
                     <br/>
 
-                    #{msg['appli.movie.label.producer']}: <h:inputText id="produce" value="#{manageMovie.producer}"/>
-                    
-                    <br/>
-                    
+                    #{msg['appli.movie.label.producer']}:
+                    <h:inputText id="producer" value="#{manageMovie.currentMovie.producer}"/>
+
+                    <br/><br/>
+
                     <h:button value="#{msg['appli.button.reinit']}"/>
-                    <h:commandButton id="submit" value="#{msg['appli.button.validate']}" action="#{manageMovie.addMovie()}"/>
-                    <h:button value="#{msg['appli.button.cancel']}" outcome="/index.xhtml">
-                        
-                    </h:button>
+
+                    <h:panelGroup rendered="#{manageMovie.currentMovieId == null}">
+                        <h:commandButton id="submit" value="#{msg['appli.button.validate']}" action="#{manageMovie.addMovie()}"/>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{manageMovie.currentMovieId != null}">
+                        <h:commandButton id="save" value="#{msg['appli.button.validate']}" action="#{manageMovie.saveMovie()}"/>
+                    </h:panelGroup>
+
+                    <h:button value="#{msg['appli.button.cancel']}" outcome="/index.xhtml"/>
                 </h:form>
             </ui:define>
 

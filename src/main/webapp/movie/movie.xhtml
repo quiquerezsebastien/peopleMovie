@@ -23,8 +23,11 @@
                 <br/>
                 #{msg['appli.movie.label.producer']} : #{manageMovie.currentMovie.producer}
 
-                <br/>
-                <br/>
+                <br/><br/>
+                <h:button value="#{msg['appli.button.edit']}" outcome="/movie/editMovie.xhtml">
+                    <f:param name="id" value="#{manageMovie.currentMovieId}"/>
+                </h:button>
+                <br/><br/>
 
                 <h1>#{msg['appli.people.title.list']}</h1>
 
@@ -49,7 +52,6 @@
                         </h:link>
                     </h:column>
                 </h:dataTable>
-
                 <h:button value="#{msg['appli.button.home']}" outcome="/index.xhtml"/>
             </ui:define>
 

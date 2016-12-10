@@ -19,24 +19,27 @@ import javax.inject.Inject;
 @Named(value = "manageMovie")
 @RequestScoped
 public class ManageMovie {
-    
-    private int currentMovieId;
+
+    private Long currentMovieId;
     private Movie currentMovie;
-    private String name;
-    private String producer;
-    
-    @Inject Services service;
+
+    @Inject
+    Services service;
+
     /**
      * Creates a new instance of ManageMovie
      */
     public ManageMovie() {
+        if (currentMovie == null) {
+            currentMovie = new Movie();
+        }
     }
 
-    public int getCurrentMovieId() {
+    public Long getCurrentMovieId() {
         return currentMovieId;
     }
 
-    public void setCurrentMovieId(int currentMovieId) {
+    public void setCurrentMovieId(Long currentMovieId) {
         this.currentMovieId = currentMovieId;
     }
 
@@ -48,39 +51,37 @@ public class ManageMovie {
         this.currentMovie = currentMovie;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getProducer() {
-        return producer;
-    }
-
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-    
     /**
      * Permet d'initialiser un film afin de l'afficher.
      */
     public void initMovie() {
-            currentMovie = service.getMovieWithId(new Long(currentMovieId));
+        if (currentMovieId == null) {
+            currentMovie = new Movie();
+        } else {
+            currentMovie = service.getMovieWithId(currentMovieId);
+        }
+
     }
-    
+
     /**
      * Permet de d'ajouter une nouvelle personne dans la "base de données"
+     *
      * @return
-     * @throws NullParameterException 
+     * @throws NullParameterException
      */
     public String addMovie() throws NullParameterException {
-        Movie movie = new Movie();
-        movie.setName(name);
-        movie.setProducer(producer);
-        service.saveMovie(movie);
+        service.saveMovie(currentMovie);
+        return "/index.xhtml?faces-redirect=true";
+    }
+
+    /**
+     * Permet de modifir un film
+     *
+     * @return
+     */
+    public String saveMovie() {
+        service.getMovieWithId(currentMovieId).setName(currentMovie.getName());
+        service.getMovieWithId(currentMovieId).setProducer(currentMovie.getProducer());
         return "/index.xhtml?faces-redirect=true";
     }
 }
