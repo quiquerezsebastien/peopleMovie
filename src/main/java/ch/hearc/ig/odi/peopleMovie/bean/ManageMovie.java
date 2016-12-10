@@ -6,6 +6,7 @@
 package ch.hearc.ig.odi.peopleMovie.bean;
 
 import ch.hearc.ig.odi.peopleMovie.business.Movie;
+import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -19,8 +20,10 @@ import javax.inject.Inject;
 @RequestScoped
 public class ManageMovie {
     
-    int currentMovieId;
-    Movie currentMovie;
+    private int currentMovieId;
+    private Movie currentMovie;
+    private String name;
+    private String producer;
     
     @Inject Services service;
     /**
@@ -44,11 +47,40 @@ public class ManageMovie {
     public void setCurrentMovie(Movie currentMovie) {
         this.currentMovie = currentMovie;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProducer() {
+        return producer;
+    }
+
+    public void setProducer(String producer) {
+        this.producer = producer;
+    }
     
     /**
      * Permet d'initialiser un film afin de l'afficher.
      */
     public void initMovie() {
             currentMovie = service.getMovieWithId(new Long(currentMovieId));
+    }
+    
+    /**
+     * Permet de d'ajouter une nouvelle personne dans la "base de données"
+     * @return
+     * @throws NullParameterException 
+     */
+    public String addMovie() throws NullParameterException {
+        Movie movie = new Movie();
+        movie.setName(name);
+        movie.setProducer(producer);
+        service.saveMovie(movie);
+        return "/index.xhtml?faces-redirect=true";
     }
 }

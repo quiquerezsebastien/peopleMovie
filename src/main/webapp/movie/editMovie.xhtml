@@ -16,15 +16,21 @@
             <ui:define name="top">#{msg['appli.movie.title.add']}</ui:define>
 
             <ui:define name="content">
-                
-                #{msg['appli.movie.label.name']}:
-                <h:inputText id="name"/>
-                
-                <br/>
-                
-                #{msg['appli.movie.label.producer']}:
-                <h:inputText id="produce"/>
-                
+                <h:form>
+                    #{msg['appli.movie.label.name']}: <h:inputText id="name" value="#{manageMovie.name}"/>
+
+                    <br/>
+
+                    #{msg['appli.movie.label.producer']}: <h:inputText id="produce" value="#{manageMovie.producer}"/>
+                    
+                    <br/>
+                    
+                    <h:button value="#{msg['appli.button.reinit']}"/>
+                    <h:commandButton id="submit" value="#{msg['appli.button.validate']}" action="#{manageMovie.addMovie()}"/>
+                    <h:button value="#{msg['appli.button.cancel']}" outcome="/index.xhtml">
+                        
+                    </h:button>
+                </h:form>
             </ui:define>
 
         </ui:composition>
