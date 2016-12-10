@@ -22,9 +22,12 @@
                 #{msg['appli.people.label.firstname']}: #{managePerson.currentPerson.firstName}
                 <br/>
                 #{msg['appli.people.label.lastname']}:  #{managePerson.currentPerson.lastName}
-
-                <br/>
-                <br/>
+                
+                <br/><br/>
+                <h:button value="#{msg['appli.button.edit']}" outcome="/person/editPerson.xhtml">
+                    <f:param name="id" value="#{managePerson.currentPersonID}"/>
+                </h:button>
+                <br/><br/>
 
                 <h1>#{msg['appli.movie.title.list']}</h1>
                 <br/>

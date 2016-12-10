@@ -236,6 +236,10 @@ public class Services implements Serializable{
     public void setMovies(Map<Long, Movie> movies) {
         this.movies = movies;
     }
+
+    public void saveMovie(Person currentPerson) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

@@ -64,7 +64,7 @@ public class ManageMovie {
     }
 
     /**
-     * Permet de d'ajouter une nouvelle personne dans la "base de données"
+     * Permet de d'ajouter un nouveau film dans la "base de données"
      *
      * @return
      * @throws NullParameterException
@@ -75,7 +75,7 @@ public class ManageMovie {
     }
 
     /**
-     * Permet de modifir un film
+     * Permet de modifier un film
      *
      * @return
      */
