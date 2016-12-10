@@ -46,6 +46,9 @@ public class ManagePerson {
         this.currentPerson = currentPerson;
     }
     
+    /**
+     * Permet d'initialiser une personne par rapport à l'Id reçu en paramètre
+     */
     public void initPerson() {
             currentPerson = service.getPersonWithId(new Long(currentPersonID));
         }

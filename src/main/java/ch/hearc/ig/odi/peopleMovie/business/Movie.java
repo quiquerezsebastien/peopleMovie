@@ -15,15 +15,14 @@ import java.util.List;
  *
  * @author sebastie.quiquere
  */
-public class Movie implements Serializable{
-    
+public class Movie implements Serializable {
+
     private Long id;
     private String name;
     private String producer;
     private List<Person> people;
 
-    public Movie(String producer) {
-        this.producer = producer;
+    public Movie() {
         this.people = new ArrayList<>();
     }
 
@@ -65,7 +64,7 @@ public class Movie implements Serializable{
     public void setPeople(List<Person> people) {
         this.people = people;
     }
-    
+
     public void addPerson(Person person) throws UniqueException, NullParameterException {
 
         if (person == null) {
@@ -81,5 +80,5 @@ public class Movie implements Serializable{
             people.add(person);
         }
     }
-    
+
 }

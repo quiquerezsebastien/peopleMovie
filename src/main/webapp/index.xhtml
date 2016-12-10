@@ -29,11 +29,15 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.people.label.lastname']}</f:facet>
-                            #{person.lastName}
+                        <h:link outcome="person/person.xhtml" value="#{person.lastName}">
+                            <f:param name="id" value="#{person.id}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.people.label.firstname']}</f:facet>
-                            #{person.firstName}
+                        <h:link outcome="person/person.xhtml" value="#{person.firstName}">
+                            <f:param name="id" value="#{person.id}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.people.label.movies']}</f:facet>
@@ -54,18 +58,25 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.name']}</f:facet>
-                            #{movie.name}
+                        <h:link outcome="movie/movie.xhtml" value="#{movie.name}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.producer']}</f:facet>
-                            #{movie.producer}
+                        <h:link outcome="movie/movie.xhtml" value="#{movie.producer}">
+                            <f:param name="id" value="#{movie.id}"/>
+                        </h:link>
                     </h:column>
                     <h:column>
                         <f:facet name="header">#{msg['appli.movie.label.persons']}</f:facet>
                             #{movie.people.size()}
                     </h:column>
                 </h:dataTable>
-
+                
+                <br/>
+                
+                <h:button value="#{msg['appli.button.add']}" outcome="movie/editMovie.xhtml"/>
             </ui:define>
 
         </ui:composition>
