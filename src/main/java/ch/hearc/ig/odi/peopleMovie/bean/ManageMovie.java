@@ -8,17 +8,18 @@ package ch.hearc.ig.odi.peopleMovie.bean;
 import ch.hearc.ig.odi.peopleMovie.business.Movie;
 import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
 /**
  *
  * @author sebastie.quiquere
  */
-@Named(value = "manageMovie")
-@RequestScoped
-public class ManageMovie {
+@ManagedBean(name = "manageMovie")
+@ViewScoped
+public class ManageMovie implements Serializable{
 
     private Long currentMovieId;
     private Movie currentMovie;
@@ -64,7 +65,7 @@ public class ManageMovie {
     }
 
     /**
-     * Permet de d'ajouter une nouvelle personne dans la "base de données"
+     * Permet de d'ajouter un nouveau film dans la "base de données"
      *
      * @return
      * @throws NullParameterException
@@ -75,7 +76,7 @@ public class ManageMovie {
     }
 
     /**
-     * Permet de modifir un film
+     * Permet de modifier un film
      *
      * @return
      */

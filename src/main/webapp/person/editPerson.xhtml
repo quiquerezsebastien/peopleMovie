@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <f:metadata>
+            <f:viewParam name="id" value="#{managePerson.currentPersonID}"/>
+            <f:viewAction action="#{managePerson.initPerson()}" />
+        </f:metadata>
+    </h:head>
+    <h:body>
+        <ui:composition template="/main.xhtml">
+            <ui:define name="top">
+                <h:panelGroup rendered="#{managePerson.currentPersonID != null}">
+                    #{msg['appli.people.title.edit']}
+                </h:panelGroup>
+                <h:panelGroup rendered="#{managePerson.currentPersonID == null}">
+                    #{msg['appli.people.title.add']}
+                </h:panelGroup>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form>
+                    <h:panelGroup rendered="#{managePerson.currentPersonID != null}">
+                        #{msg['appli.people.label.id']}: <h:inputText id="idPer" value="#{managePerson.currentPerson.id}" disabled="true"/>
+                    </h:panelGroup>
+                    <br/>
+
+                    #{msg['appli.people.label.firstname']}:
+                    <h:inputText id="firstname" value="#{managePerson.currentPerson.firstName}"/>
+
+                    <br/>
+
+                    #{msg['appli.people.label.lastname']}:
+                    <h:inputText id="lastname" value="#{managePerson.currentPerson.lastName}"/>
+
+                    <br/><br/>
+
+                    <h:button value="#{msg['appli.button.reinit']}"/>
+
+                    <h:panelGroup rendered="#{managePerson.currentPersonID == null}">
+                        <h:commandButton id="submit" value="#{msg['appli.button.validate']}" action="#{managePerson.addPerson()}"/>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{managePerson.currentPersonID != null}">
+                        <h:commandButton id="save" value="#{msg['appli.button.validate']}" action="#{managePerson.savePerson()}"/>
+                    </h:panelGroup>
+
+                    <h:button value="#{msg['appli.button.cancel']}" outcome="/index.xhtml"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

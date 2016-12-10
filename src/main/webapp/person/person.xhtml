@@ -23,8 +23,11 @@
                 <br/>
                 #{msg['appli.people.label.lastname']}:  #{managePerson.currentPerson.lastName}
 
-                <br/>
-                <br/>
+                <br/><br/>
+                <h:button value="#{msg['appli.button.edit']}" outcome="/person/editPerson.xhtml">
+                    <f:param name="id" value="#{managePerson.currentPersonID}"/>
+                </h:button>
+                <br/><br/>
 
                 <h1>#{msg['appli.movie.title.list']}</h1>
                 <br/>
@@ -46,6 +49,11 @@
                         <h:link outcome="/movie/movie.xhtml" value="#{movie.producer}">
                             <f:param name="id" value="#{movie.id}"/>
                         </h:link>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="#{msg['appli.movie.title.delete']}" action="#{managePerson.deleteMovie(movie)}"/>
+                        </h:form>
                     </h:column>
                 </h:dataTable>
                 <h:button value="#{msg['appli.button.home']}" outcome="/index.xhtml"/>
