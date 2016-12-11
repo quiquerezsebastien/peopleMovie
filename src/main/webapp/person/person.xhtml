@@ -56,6 +56,16 @@
                         </h:form>
                     </h:column>
                 </h:dataTable>
+                <br/>
+                <h:form>
+                            #{msg['appli.people.label.movie.add']}
+                            <h:selectOneMenu id="lovMovie" value="#{managePerson.movieToBook}">
+                                <f:converter binding="#{movieLOVConerter}"/>
+                                <f:selectItems value="#{managePerson.movieToAdd}" var="movie" itemLabel="#{movie.name}"/>
+                            </h:selectOneMenu>
+                    <h:commandButton value="#{msg['appli.button.add']}" action="#{managePerson.addMovie()}"/>
+                </h:form>
+                <br/>
                 <h:button value="#{msg['appli.button.home']}" outcome="/index.xhtml"/>
             </ui:define>
 

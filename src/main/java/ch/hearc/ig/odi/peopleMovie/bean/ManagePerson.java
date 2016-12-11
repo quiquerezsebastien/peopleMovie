@@ -9,8 +9,10 @@ import ch.hearc.ig.odi.peopleMovie.business.Movie;
 import ch.hearc.ig.odi.peopleMovie.business.Person;
 import ch.hearc.ig.odi.peopleMovie.exception.InvalidParameterException;
 import ch.hearc.ig.odi.peopleMovie.exception.NullParameterException;
+import ch.hearc.ig.odi.peopleMovie.exception.UniqueException;
 import ch.hearc.ig.odi.peopleMovie.service.Services;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -27,6 +29,7 @@ public class ManagePerson implements Serializable{
     
     Long currentPersonID;
     Person currentPerson;
+    Movie movieToBook;
 
     /**
      * Creates a new instance of ManagePerson
@@ -51,6 +54,14 @@ public class ManagePerson implements Serializable{
 
     public void setCurrentPerson(Person currentPerson) {
         this.currentPerson = currentPerson;
+    }
+
+    public Movie getMovieToBook() {
+        return movieToBook;
+    }
+
+    public void setMovieToBook(Movie movieToBook) {
+        this.movieToBook = movieToBook;
     }
     
     /**
@@ -86,7 +97,34 @@ public class ManagePerson implements Serializable{
         return "/index.xhtml?faces-redirect=true";
     }
     
+    /**
+     * Permet de supprimer un film d'une personne
+     * @param movie Le film à supprimer
+     * @throws NullParameterException
+     * @throws InvalidParameterException 
+     */
     public void deleteMovie(Movie movie) throws NullParameterException, InvalidParameterException{
         service.removeMovieFromPerson(currentPerson, movie);
+    }
+    
+    /**
+     * Permet de retourner la liste des films par encore ajoutés à une persone.
+     * @return 
+     */
+    public List<Movie> getMovieToAdd(){
+        List<Movie> moviesToReturn = service.getMoviesList();
+        
+        for(Movie movie : currentPerson.getMovies()){
+            moviesToReturn.remove(movie);
+        }
+        
+        return moviesToReturn;
+    }
+    
+    /**
+     * Permet d'ajouter un film à une personne.
+     */
+    public void addMovie() throws NullParameterException, UniqueException{
+        service.addMovieToPerson(currentPerson, movieToBook);
     }
 }
